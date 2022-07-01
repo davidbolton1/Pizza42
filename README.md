@@ -2,8 +2,18 @@
 
 
 
-● The security team would like to offload credential management to the identity solution. Securing their infrastructure is complex and storing credentials raises the level of liability.
+● The security team would like to offload credential management to the identity solution. Securing their infrastructure is complex and storing credentials raises the level of liability. 
+-> Talk about Auth0 benefits, security, 99% availability etc
+https://auth0.com/security
+https://auth0.com/availability-trust
+https://status.auth0.com/
+
 ● The product team would like the identity solution to provide a frictionless and customizable login experience. They would like turnkey password reset functionality to reduce help desk call volume. They would also like to provide customers the option to login with their social login provider.
+-> Talk about universal login, automatic password reset, built in social login
+https://auth0.com/learn/social-login/
+https://auth0.com/docs/authenticate/login/auth0-universal-login
+https://auth0.com/docs/authenticate/database-connections/password-change
+
 ● The marketing team would like the identity solution to enrich customer data as users login. Customer data will be used to drive marketing campaigns to deepen their already loyal customer base and appeal to new customers.
 
 
