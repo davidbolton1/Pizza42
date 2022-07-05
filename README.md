@@ -100,6 +100,11 @@ function addEmailToAccessToken(user, context, callback) {
 }
 ```
 --> Then, make sure that this is required before calling the API 
+
+The API endpoint servicing the orders request must require a valid token as well as a
+specific scope for the operation to complete.
+
+
 ```
 const checkJwt = jwt({
   secret: jwksRsa.expressJwtSecret({
@@ -129,8 +134,6 @@ app.post("/api/external", checkJwt, (req, res) => {
 });
 ```
 
-The API endpoint servicing the orders request must require a valid token as well as a
-specific scope for the operation to complete.
 
 ```
 const callApi = async (pizzaName) => {
