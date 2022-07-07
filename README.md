@@ -23,7 +23,7 @@ https://auth0.com/blog/how-profile-enrichment-and-progressive-profiling-can-boos
 User meta
 
 
-Complete the Login portion of the quick start so our Pizza customers can sign in.
+● Complete the Login portion of the quick start so our Pizza customers can sign in.
 
 -> This is just downloading the SDK, setting the callbacks and adding an auth0.config.json file
 
