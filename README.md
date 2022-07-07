@@ -175,7 +175,8 @@ const callApi = async (pizzaName) => {
 ```
 
 ● Add the order history of a user to their ID token when they login
-I added 3 different ways to do this using rules/actions, the easiest is to just add it to the initial rule. 
+
+-> I added 3 different ways to do this using rules/actions, the easiest is to just add it to the initial rule. 
 ```
 context.idToken[namespace + 'Order_History'] = user.user_metadata.Orders;
 console.log("context.idToken after : " + JSON.stringify(context.idToken));
