@@ -6,10 +6,10 @@ var auth0 = new ManagementClient({
     domain: "pocsetup.us.auth0.com",
     clientId: "Rkr5gvfOfQI6GgA3y90U8KIjBFlcEPkJ",
     clientSecret: '8hpb1FLclLjimjt5uXA0WH4uP36NT9aSh5XPOlrWYX3BfXQuOpo-ngIUknceRGtN',
-    scope: 'read:users update:users update:current_user_metadata'
+    scope: 'read:users update:users update:users_app_metadata'
 });
 
-exports.updateUserMetadata = (userId, pizzaName) => {
+exports.updateUserAddress = (userId, address) => {
 
     auth0
         .getUser(userId)
@@ -19,18 +19,21 @@ exports.updateUserMetadata = (userId, pizzaName) => {
             //console.log (currentMetadata)
             if (typeof currentMetadata !== 'undefined' && currentMetadata !== null) {
                // add the pizza to the order
-                currentMetadata.Orders.push(pizzaName);
+                //currentMetadata.Orders.push(address);
+                currentMetadata = {
+                    Address: [address]
+                }
             } else {
                 // Otherwise metadata is set to the orders object
                 currentMetadata = {
-                    Orders: [pizzaName]
+                    Address: [address]
                 }
             }
 
             var params = { id: userId };
             var metadata = currentMetadata;
 
-            auth0.updateUserMetadata(params, metadata, function (err, user) {
+            auth0.updateUserAddress(params, metadata, function (err, user) {
                 if (err) {
                     console.log(err);
                 }
