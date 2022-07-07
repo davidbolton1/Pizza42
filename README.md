@@ -54,7 +54,7 @@ exports.updateUserMetadata = (userId, pizzaName) => {
                // add the pizza to the order
                 currentMetadata.Orders.push(pizzaName);
             } else {
-                // Otherwise metadata is set to the orders object
+                // Otherwise metadata is set to Orders
                 currentMetadata = {
                     Orders: [pizzaName]
                 }
