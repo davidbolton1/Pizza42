@@ -99,6 +99,21 @@ function addEmailToAccessToken(user, context, callback) {
   return callback(null, user, context);
 }
 ```
+
+```
+app.post("/api/external", checkJwt, (req, res) => {
+  var userId = req.user['sub'];
+ // Add a custom rule
+ // The namespaced claim will point to the /verified endpoint
+   if (!req.user['https://quickstarts/api/verified']) {
+     console.log(userId)
+     res.send({
+         msg: "Sorry, only verified emails may place an order. Please make sure to verify your email!"         
+
+     });
+   }
+ ```
+   
 --> Then, make sure that this is required before calling the API 
 
 ● The API endpoint servicing the orders request must require a valid token as well as a
@@ -165,13 +180,52 @@ const callApi = async (pizzaName) => {
 
 ● After an order is placed, save the order to the user’s Auth0 profile for future reference.
 ```
-  // Update metadata for the user
- else{
+  exports.updateUserMetadata = (userId, pizzaName) => {
+
+    auth0
+        .getUser(userId)
+        // console.log(userId)
+        .then(function (user) {
+            var currentMetadata = user[0].user_metadata;
+            //console.log (currentMetadata)
+            if (typeof currentMetadata !== 'undefined' && currentMetadata !== null) {
+               // add the pizza to the order
+                currentMetadata.Orders.push(pizzaName);
+            } else {
+                // Otherwise metadata is set to the orders object
+                currentMetadata = {
+                    Orders: [pizzaName]
+                }
+            }
+
+            var params = { id: userId };
+            var metadata = currentMetadata;
+
+            auth0.updateUserMetadata(params, metadata, function (err, user) {
+                if (err) {
+                    console.log(err);
+                }
+
+                // Verify the user was updated
+                console.log(user);
+            });
+        })
+        .catch(function (err) {
+            console.log(err);
+        });
+}
+```
+
+--> This is called after the order 
+```  
+else{
   autho0Mgmt.updateUserMetadata(userId, req.body.pizzaName);
   res.send({
     msg: "Thank you for your order"
   });
  }
+  
+});
 ```
 
 ● Add the order history of a user to their ID token when they login
