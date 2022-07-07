@@ -27,7 +27,7 @@ User meta
 
 -> This is just downloading the SDK, setting the callbacks and adding an auth0.config.json file
 
-Complete the Call an API portion of the quick start so our Pizza customers can store
+● Complete the Call an API portion of the quick start so our Pizza customers can store
 orders in their profile.
 
 ```
