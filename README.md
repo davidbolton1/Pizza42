@@ -78,12 +78,12 @@ exports.updateUserMetadata = (userId, pizzaName) => {
 }
 ```
 
-Give new customers the option to sign up and existing customers to sign in with either
+● Give new customers the option to sign up and existing customers to sign in with either
 email/password or a social identity provider such as Google.
 
 -> This is done in the dashboard
 
-Require that a customer have a verified email address before placing a pizza order. This
+● Require that a customer have a verified email address before placing a pizza order. This
 shouldn’t prevent them from signing into the application.
 
 -> Use the rule template for adding email to access token, then just make a namespaced claim based on the user object
@@ -101,7 +101,7 @@ function addEmailToAccessToken(user, context, callback) {
 ```
 --> Then, make sure that this is required before calling the API 
 
-The API endpoint servicing the orders request must require a valid token as well as a
+● The API endpoint servicing the orders request must require a valid token as well as a
 specific scope for the operation to complete.
 
 
@@ -163,7 +163,7 @@ const callApi = async (pizzaName) => {
 });
 ```
 
-After an order is placed, save the order to the user’s Auth0 profile for future reference.
+● After an order is placed, save the order to the user’s Auth0 profile for future reference.
 ```
   // Update metadata for the user
  else{
@@ -174,3 +174,9 @@ After an order is placed, save the order to the user’s Auth0 profile for futur
  }
 ```
 
+● Add the order history of a user to their ID token when they login
+I added 3 different ways to do this using rules/actions, the easiest is to just add it to the initial rule. 
+```
+context.idToken[namespace + 'Order_History'] = user.user_metadata.Orders;
+console.log("context.idToken after : " + JSON.stringify(context.idToken));
+```
