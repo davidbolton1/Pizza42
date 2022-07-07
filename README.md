@@ -114,7 +114,7 @@ app.post("/api/external", checkJwt, (req, res) => {
    }
  ```
    
---> Then, make sure that this is required before calling the API 
+-> Then, make sure that this is required before calling the API 
 
 ● The API endpoint servicing the orders request must require a valid token as well as a
 specific scope for the operation to complete.
@@ -169,7 +169,7 @@ const callApi = async (pizzaName) => {
       body: JSON.stringify(pizzaOrder)
     });
 ```
---> Scope is set in management.js
+-> Scope is set in management.js
 ```var auth0 = new ManagementClient({
     domain: "pocsetup.us.auth0.com",
     clientId: "Rkr5gvfOfQI6GgA3y90U8KIjBFlcEPkJ",
@@ -216,7 +216,7 @@ const callApi = async (pizzaName) => {
 }
 ```
 
---> This is called after the order 
+-> This is called after the order 
 ```  
 else{
   autho0Mgmt.updateUserMetadata(userId, req.body.pizzaName);
