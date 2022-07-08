@@ -1,6 +1,6 @@
 exports.onExecutePostLogin = async (event, api) => {
     const namespace = 'https://quickstarts/api';
-    const { orders } = event.user.user_metadata;
+    const { orders } = event.user.user_metadata.orders;
   
     if (event.authorization) {
       // Set claims 
