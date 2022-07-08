@@ -31,6 +31,40 @@ User meta
 orders in their profile.
 
 ```
+const callApi = async (pizzaName) => {
+  try {
+    const token = await auth0.getTokenSilently();
+
+    
+    var pizzaOrder = {
+      pizzaName: pizzaName
+    }
+  // console.log(pizzaOrder)
+    const response = await fetch("/api/external", {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(pizzaOrder)
+    });
+
+    const responseData = await response.json();
+    const responseElement = document.getElementById("api-call-result");
+
+    responseElement.innerText = JSON.stringify(responseData, {}, 2);
+
+    document.querySelectorAll("pre code").forEach(hljs.highlightBlock);
+
+    eachElement(".result-block", (c) => c.classList.add("show"));
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+```
+-> Metadata later updated 
+```
 // Initialize a management client
 var ManagementClient = require('auth0').ManagementClient;
 // Setup domain and point to the M2M test app
